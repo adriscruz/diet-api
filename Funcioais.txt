@@ -1,0 +1,23 @@
+Requisitos Funcionais
+
+[x] Criação de Usuário: Permitir o cadastro de novos usuários no sistema.
+[x] Autenticação de Usuário: Identificar o usuário em cada requisição.
+[x] Registro de Refeições: Permitir que o usuário registre suas refeições, incluindo informações como 
+nome, descrição, data e hora, e se está dentro da dieta.
+[x] Edição de Refeições: Capacidade de editar os detalhes de uma refeição já registrada.
+[x] Exclusão de Refeições: Permitir que o usuário exclua refeições registradas.
+[x] Listagem de Refeições: Exibir todas as refeições registradas por um usuário específico.
+[x] Detalhamento de Refeição: Visualizar informações detalhadas de uma única refeição.
+[x] Deve ser possível recuperar as métricas de um usuário
+    - Quantidade total de refeições registradas
+    - Quantidade total de refeições dentro da dieta
+    - Quantidade total de refeições fora da dieta
+    - Melhor sequência de refeições dentro da dieta
+
+Regras de Negócio
+
+[x] Associação Usuário-Refeição: Cada refeição registrada deve estar vinculada a um usuário específico.
+[x] Controle de Acesso: Usuários só podem visualizar, editar ou apagar suas próprias refeições.
+[x] Validação de Dados: As refeições devem ter todas as informações necessárias preenchidas corretamente.
+[x] Lógica de Métricas: As métricas do usuário devem ser calculadas com base nas refeições registradas, seguindo as 
+definições especificadas nos requisitos funcionais   
