@@ -25,7 +25,7 @@ export async function mealsRoutes(app: FastifyInstance) {
 
         const meals = await knex('meals').select('*').where({user_session_id: session_id});
 
-        return {meals};
+        return {meals}
     })
 
     app.get('/:id', async (request) => {
@@ -39,7 +39,16 @@ export async function mealsRoutes(app: FastifyInstance) {
     app.post('/', async (request, reply) => {
         const { name, description, type, user_session_id, rating } = createMealsSchema.parse(request.body);
 
-        const session_id = request.cookies.session_id;
+        let session_id = request.cookies.session_id;
+
+        if(!session_id && !user_session_id) {
+            session_id = randomUUID();
+
+            reply.setCookie('session_id', session_id, {
+                path: '/',
+                maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+            })
+        }
         
         await knex('meals').insert({
             id: randomUUID(),
@@ -47,7 +56,7 @@ export async function mealsRoutes(app: FastifyInstance) {
             description,
             type,
             rating,
-            user_session_id: user_session_id || session_id,
+            user_session_id: session_id,
         });
 
         return reply.status(201).send('Refeição criada com sucesso!');
